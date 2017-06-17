@@ -1,6 +1,13 @@
 # Change Log - office-ui-fabric-react
 
-This log was last generated on Sat, 17 Jun 2017 06:27:45 GMT and should not be manually modified.
+This log was last generated on Sat, 17 Jun 2017 17:20:42 GMT and should not be manually modified.
+
+## 4.8.2
+Sat, 17 Jun 2017 17:20:41 GMT
+
+### Patches
+
+- Icon: image icons now have less random "l" characters. Sorry about that!
 
 ## 4.8.1
 Sat, 17 Jun 2017 06:27:45 GMT
