@@ -2,17 +2,23 @@ import { KeyCodes } from './KeyCodes';
 import { getDocument } from './dom';
 
 // Default to undefined so that we initialize on first read.
-let _isRTL: boolean;
+let _isRTL: boolean | undefined;
 
 /**
  * Gets the rtl state of the page (returns true if in rtl.)
  */
 export function getRTL(): boolean {
-  if (_isRTL === undefined) {
-    setRTL(_isRTL);
+  let isRTL: boolean = _isRTL as boolean;
+
+  if (isRTL === undefined) {
+    let doc = getDocument();
+
+    if (doc && doc.documentElement) {
+      isRTL = doc.documentElement.getAttribute('dir') === 'rtl';
+    }
   }
 
-  return _isRTL;
+  return isRTL;
 }
 
 /**
@@ -21,7 +27,7 @@ export function getRTL(): boolean {
 export function setRTL(isRTL: boolean) {
   let doc = getDocument();
 
-  if (doc) {
+  if (doc && doc.documentElement) {
     doc.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
   }
 
