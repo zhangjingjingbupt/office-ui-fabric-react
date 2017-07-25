@@ -1,0 +1,96 @@
+@import '../../common/common';
+
+.tile {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $ms-color-white;
+  transition: transform 0.1s linear;
+  overflow: hidden;
+
+  &:hover {
+    background-color: $ms-color-neutralLighter;
+
+    &.selected {
+      background-color: #DADADA;
+    }
+  }
+
+  &.selected {
+    background-color: $ms-color-neutralLight;
+  }
+
+  &:focus {
+    background-color: $ms-color-neutralLighter;
+
+    &.selected {
+      background-color: #DADADA; // Todo need a color variable.
+    }
+  }
+
+  &.iconContent {
+    &:focus {
+      outline: 1px solid $ms-color-neutralSecondary;
+
+      &.selected {
+        outline: 1px solid $ms-color-themePrimary;
+      }
+    }
+  }
+
+  &.richContent {
+    box-shadow: 0 1px 1px 1px rgba(1, 1, 1, 0.3);
+
+    &:hover {
+      outline: 1px solid $ms-color-neutralTertiaryAlt;
+    }
+
+    &:focus {
+      outline: 1px solid $ms-color-neutralSecondary;
+
+      &.selected {
+        outline: 1px solid $ms-color-themePrimary;
+      }
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      pointer-events: none;
+      border: 2px solid $ms-color-white;
+    }
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.check {
+  @include focus-border($position: absolute);
+  display: block;
+  top: 0;
+  @include right(0);
+  border: none;
+  background: none;
+  opacity: 0;
+
+  .tile.selected &,
+  .tile:hover &,
+  .tile:focus &,
+  &:focus {
+    opacity: 1;
+  }
+}
+
+button.check {
+  padding: 6px;
+}
