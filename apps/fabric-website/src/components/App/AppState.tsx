@@ -328,6 +328,12 @@ export const AppState: IAppState = {
           getComponent: cb => require.ensure([], (require) => cb(require<any>('../../pages/Components/TextFieldComponentPage').TextFieldComponentPage))
         },
         {
+          title: 'TilesList',
+          url: '#/components/tileslist',
+          component: () => <LoadingComponent title='TilesList' />,
+          getComponent: cb => require.ensure([], (require) => cb(require<any>('../../pages/Components/TilesListComponentPage').TilesListComponentPage))
+        },
+        {
           title: 'Toggle',
           url: '#/components/toggle',
           component: () => <LoadingComponent title='Toggle' />,

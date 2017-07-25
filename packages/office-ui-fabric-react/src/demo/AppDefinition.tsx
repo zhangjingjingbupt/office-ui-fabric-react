@@ -245,6 +245,12 @@ export const AppDefinition: IAppDefinition = {
           url: '#/examples/textfield'
         },
         {
+          component: require<any>('../components/TilesList/TilesListPage').TilesListPage,
+          key: 'TilesList',
+          name: 'TilesList',
+          url: '#/examples/tileslist'
+        },
+        {
           component: require<any>('../components/Toggle/TogglePage').TogglePage,
           key: 'Toggle',
           name: 'Toggle',
