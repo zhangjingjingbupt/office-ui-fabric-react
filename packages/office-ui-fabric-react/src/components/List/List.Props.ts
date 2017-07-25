@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IRectangle } from '../../Utilities';
+import { IRectangle, IRenderFunction } from '../../Utilities';
 import { List } from './List';
 
 export interface IList {
@@ -41,6 +41,26 @@ export interface IListProps extends React.HTMLAttributes<List | HTMLDivElement> 
   /** Optional callback to get the item key, to be used on render. */
   getKey?: (item: any, index?: number) => string;
 
+  /**
+   * Called by the list to get information about a page.
+   * Can be used if all information (item count, height) can be
+   * determined at once.
+   */
+  getPage?: (itemIndex?: number, visibleRect?: IRectangle) => {
+    /**
+     * The number of items to allocate to the page.
+     */
+    itemCount?: number;
+    /**
+     * The estimated pixel height of the page.
+     */
+    height?: number;
+    /**
+     * Data to pass through to the page when rendering.
+     */
+    data?: any;
+  };
+
   /** Method called by the list to get how many items to render per page from specified index. */
   getItemCountForPage?: (itemIndex?: number, visibleRect?: IRectangle) => number;
 
@@ -75,6 +95,32 @@ export interface IListProps extends React.HTMLAttributes<List | HTMLDivElement> 
 
   /** Number of items to render. Defaults to items.length. */
   renderCount?: number;
+
+  /**
+   * Called to add styles to a given cell during rendering.
+   */
+  getCellStyle?: (item: any, index: number) => any;
+
+  /**
+   * Called to add a class to a given page during rendering.
+   */
+  getPageClassName?: (page: IPage) => string;
+
+  /**
+   * Called to add a class to a given list cell during rendering.
+   */
+  getCellClassName?: (item: any, index: number) => string;
+
+  /**
+   * Additional class for the list surface element.
+   */
+  surfaceClassName?: string;
+
+  /**
+   * Called when the List will render a page.
+   * Override this to control how cells are rendered within a page.
+   */
+  onRenderPage?: (pageProps: IPageProps, defaultRender?: IRenderFunction<IPageProps>) => React.ReactNode;
 }
 
 export interface IPage {
@@ -85,4 +131,9 @@ export interface IPage {
   style: any;
   top: number;
   height: number;
+  data?: any;
+}
+
+export interface IPageProps extends React.HTMLProps<HTMLDivElement> {
+  page: IPage;
 }
