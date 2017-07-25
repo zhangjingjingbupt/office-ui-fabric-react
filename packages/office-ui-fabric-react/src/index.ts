@@ -51,6 +51,7 @@ export * from './SwatchColorPicker';
 export * from './TeachingBubble';
 export * from './TextField';
 export * from './Tile';
+export * from './TilesList';
 export * from './Toggle';
 export * from './Tooltip';
 export * from './Utilities';
